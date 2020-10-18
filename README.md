@@ -3,7 +3,9 @@ Read .msh file and return info of nodes and elements as arrays.
 
 # Usage
 
-This package is not yet registried. Please add readgmsh.jl to your project directory.
+This package is not yet registried. Please add readgmsh.jl to your project directory. 
+
+The essential package Gmsh can be install by `]add Gmsh`.
 
 # Examples
 
