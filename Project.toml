@@ -1,0 +1,13 @@
+name = "ReadGmsh"
+uuid = "f76d8135-3b6c-4282-9284-5ba13be053fc"
+authors = ["Hetao Z."]
+version = "0.1.0"
+
+[compat]
+julia = "1.5"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
