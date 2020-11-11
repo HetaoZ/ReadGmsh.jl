@@ -127,18 +127,18 @@ function get_bounds(file, elemtype, dim)
     @assert dim in (1,2,3)
     # Gmsh.jl package has a weird bug that sometimes makes itself crash. Have more try!
     try
-        return get_bounds_core(f, elemtype, dim)
+        return get_bounds_core(file, elemtype, dim)
     catch
         try
-            return get_bounds_core(f, elemtype, dim)
+            return get_bounds_core(file, elemtype, dim)
         catch
             try
-                return get_bounds_core(f, elemtype, dim)
+                return get_bounds_core(file, elemtype, dim)
             catch
                 try
-                    return get_bounds_core(f, elemtype, dim)
+                    return get_bounds_core(file, elemtype, dim)
                 catch
-                    return get_bounds_core(f, elemtype, dim)
+                    return get_bounds_core(file, elemtype, dim)
                 end
             end
         end
