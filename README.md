@@ -36,11 +36,22 @@ More element types can be found in Gmsh [documentation](https://gmsh.info/doc/te
 ```julia
 using ReadGmsh
 
+# get information of nodes
 nodeTags, nodeCoords = get_nodes("examples/rect2d.msh")
 
+# get information of elements of Gmsh element type 1 and 2 respectively
 elemTags_1, elemNodeTags_1 = get_elems("examples/rect2d.msh", 1) # elemtype = 1
 elemTags_2, elemNodeTags_2 = get_elems("examples/rect2d.msh", 2) # elemtype = 2
 
-nodeTags, nodeCoords, elemTags_1, elemNodeTags_1 = get_nodes_and_elems("examples/rect2d.msh", 1)
+# get both information of nodes and elements
+nodeTags, nodeCoords, elemTags_2, elemNodeTags_2 = get_nodes_elems("examples/rect2d.msh", 2)
+
+# get information of boundary elements
+elemtype = 2
+boundary_element_dimension = 2
+boundElemTags, boundElemNodeTags = get_bounds("examples/rect2d.msh", elemtype, boundary_element_dimension)
+
+# get information of nodes, elements, and boundary elements
+nodeTags, nodeCoords, elemTags_2, elemNodeTags_2, boundElemTags, boundElemNodeTags = get_nodes_elems_bounds("examples/rect2d.msh", 2, 2)
 ```
 ![image](https://github.com/HetaoZ/ReadGmsh/blob/main/examples/rect2d.png)
