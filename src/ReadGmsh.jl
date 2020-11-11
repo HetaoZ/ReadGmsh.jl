@@ -125,6 +125,28 @@ A `bound` of a N dimensional entity is a (N-1) dimensional entity.
 """
 function get_bounds(file, elemtype, dim)
     @assert dim in (1,2,3)
+    # Gmsh.jl package has a weird bug that sometimes makes itself crash. Have more try!
+    try
+        return get_bounds_core(f, elemtype, dim)
+    catch
+        try
+            return get_bounds_core(f, elemtype, dim)
+        catch
+            try
+                return get_bounds_core(f, elemtype, dim)
+            catch
+                try
+                    return get_bounds_core(f, elemtype, dim)
+                catch
+                    return get_bounds_core(f, elemtype, dim)
+                end
+            end
+        end
+    end
+end
+export get_bounds
+
+function get_bounds_core(file, elemtype, dim)
     gmsh.initialize()
     # gmsh.option.setNumber("General.Terminal", 1)
     gmsh.open(file)
@@ -204,7 +226,6 @@ function get_bounds(file, elemtype, dim)
     end
     error("No physical group named boundary found.")
 end
-export get_bounds
 
 function get_nodes_elems_bounds(f, elemtype, dim)
     nodeTags, nodeCoords = get_nodes(f)
